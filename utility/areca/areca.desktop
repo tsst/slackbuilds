@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Areca
+Comment=Backup utility
+Exec=/opt/areca/areca.sh
+Icon=/opt/areca/icons/ico_72.png
+Terminal=false
+Type=Application
+Categories=System;Backup;

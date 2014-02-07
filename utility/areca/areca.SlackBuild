@@ -1,0 +1,91 @@
+#!/bin/sh -e
+# tsanko revision date 24.09.2012
+
+
+
+#Set initial variables: 
+
+CWD=$(pwd)
+if [ "$TMP" = "" ]; then
+  TMP=/tmp
+fi
+
+# The version which appears in the application's filename
+VERSION=7.3.8
+
+# If the version conflicts with the Slackware package standard
+# The dash character ("-") is not allowed in the VERSION string
+# You can set the PKG_VERSION to something else than VERSION
+PKG_VERSION=7.3.8 # the version which appears in the package name. 
+
+ARCH=${ARCH:-i486} # the architecture on which you want to build your package   
+
+# First digit is the build number, which specifies how many times it has been built.    
+# Second string is the short form of the authors name, typical three initials:w
+BUILD=${BUILD:-1_tss}
+
+# The application's name
+APP=areca
+
+# The installation directory of the package (where its actual directory
+# structure will be created) 
+PKG=$TMP/package-$APP
+PKG_PY=$TMP/package-$APP/opt/areca
+
+if [ "$ARCH" = "i486" ]; then
+  SLKCFLAGS="-O2 -march=i486 -mtune=i686"
+ elif [ "$ARCH" = "x86_64" ]; then
+  SLKCFLAGS="-O2 -fPIC"
+fi
+
+# Delete the leftover directories if they exist (due to a previous build)
+# and (re)create the packaging directory
+rm -rf $PKG
+mkdir -p $TMP $PKG $PKG_PY
+rm -rf $TMP/$APP
+mkdir -p $TMP/$APP
+
+# Change to the TMP directory
+cd $TMP || exit 1
+ 
+# Extract the application source in TMP
+# Note: if your application comes as a tar.bz2, you need tar -jxvf
+tar -zxvf $CWD/$APP-$VERSION-linux-gtk-32.tar.gz || exit 1
+
+# Change to the application source directory
+cd $APP || exit 1
+ 
+# Change ownership and permissions if necessary
+# This may not be needed in some source tarballs, but it never hurts
+#chown -R root:root .
+#chmod -R u+w,go+r-w,a-s .
+
+ 
+# Install everything into the package directory, but exit if anything goes wrong
+mv * $PKG_PY/
+rm -rf $PKG_PY/src
+chmod 755 $PKG_PY/areca.sh
+chmod 755 $PKG_PY/bin/*
+
+mkdir -p $PKG/usr/share/applications/
+cp $CWD/areca.desktop $PKG/usr/share/applications/
+#python setup.py install --home=$PKG_PY || exit
+#mkdir -p $PKG_PY
+#mv $PKG/lib $PKG_PY/
+#make install DESTDIR=$PKG || exit
+
+# Create the ./install directory and copy the slack-desc into it
+#echo $APP": ****************************" > $CWD/slack-desc
+#echo $APP":  "$APP" "$PKG_VERSION >> $CWD/slack-desc
+#echo $APP": ****************************" >> $CWD/slack-desc
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+# Add doinst.sh to package (if it exists)
+if [ -e $CWD/doinst.sh ]; then
+  cat $CWD/doinst.sh > $PKG/install/doinst.sh
+fi
+
+# Build the package
+cd $PKG
+/sbin/makepkg -l y -c n $TMP/$APP-$PKG_VERSION-$ARCH-$BUILD.tgz
