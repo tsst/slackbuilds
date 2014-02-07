@@ -21,7 +21,7 @@ ARCH=${ARCH:-i486} # the architecture on which you want to build your package
 
 # First digit is the build number, which specifies how many times it has been built.    
 # Second string is the short form of the authors name, typical three initials:w
-BUILD=${BUILD:-1_tss}
+BUILD=${BUILD:-1_tsst}
 
 # The application's name
 APP=areca
@@ -58,12 +58,12 @@ cd $APP || exit 1
  
 # Change ownership and permissions if necessary
 # This may not be needed in some source tarballs, but it never hurts
-#chown -R root:root .
-#chmod -R u+w,go+r-w,a-s .
+chown -R root:root .
+chmod -R u+w,go+r-w,a-s .
 
  
 # Install everything into the package directory, but exit if anything goes wrong
-mv * $PKG_PY/
+cp -r * $PKG_PY/
 rm -rf $PKG_PY/src
 chmod 755 $PKG_PY/areca.sh
 chmod 755 $PKG_PY/bin/*
