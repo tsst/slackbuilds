@@ -1,5 +1,4 @@
 #!/bin/sh -e
-# tsanko revision date 24.09.2012
 
 
 
@@ -7,16 +6,16 @@
 
 CWD=$(pwd)
 if [ "$TMP" = "" ]; then
-  TMP=/tmp
+  TMP=/tmp/mbuild
 fi
 
 # The version which appears in the application's filename
-VERSION=7.3.8
+VERSION=7.4.2
 
 # If the version conflicts with the Slackware package standard
 # The dash character ("-") is not allowed in the VERSION string
 # You can set the PKG_VERSION to something else than VERSION
-PKG_VERSION=7.3.8 # the version which appears in the package name. 
+PKG_VERSION=7.4.2 # the version which appears in the package name. 
 
 ARCH=${ARCH:-i486} # the architecture on which you want to build your package   
 
@@ -32,10 +31,12 @@ APP=areca
 PKG=$TMP/package-$APP
 PKG_PY=$TMP/package-$APP/opt/areca
 
+ARCH_TAR="32"
 if [ "$ARCH" = "i486" ]; then
   SLKCFLAGS="-O2 -march=i486 -mtune=i686"
  elif [ "$ARCH" = "x86_64" ]; then
   SLKCFLAGS="-O2 -fPIC"
+  ARCH_TAR="64"
 fi
 
 # Delete the leftover directories if they exist (due to a previous build)
@@ -50,7 +51,7 @@ cd $TMP || exit 1
  
 # Extract the application source in TMP
 # Note: if your application comes as a tar.bz2, you need tar -jxvf
-tar -zxvf $CWD/$APP-$VERSION-linux-gtk-32.tar.gz || exit 1
+tar -zxvf $CWD/$APP-$VERSION-linux-gtk-$ARCH_TAR.tar.gz || exit 1
 
 # Change to the application source directory
 cd $APP || exit 1
