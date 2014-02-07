@@ -8,6 +8,7 @@ CWD=$(pwd)
 if [ "$TMP" = "" ]; then
   TMP=/tmp/mbuild
 fi
+OUTPUT=${OUTPUT:-/tmp/mbuild}
 
 # The version which appears in the application's filename
 VERSION=7.4.2
@@ -89,4 +90,4 @@ fi
 
 # Build the package
 cd $PKG
-/sbin/makepkg -l y -c n $TMP/$APP-$PKG_VERSION-$ARCH-$BUILD.tgz
+/sbin/makepkg -l y -c n $OUTPUT/$APP-$PKG_VERSION-$ARCH-$BUILD.tgz
