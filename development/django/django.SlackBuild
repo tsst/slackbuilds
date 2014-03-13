@@ -60,7 +60,7 @@ find . \
 python setup.py install --prefix=/usr --root="$PKG"
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a AUTHORS LICENSE README $PKG/usr/doc/$PRGNAM-$VERSION
+cp -a AUTHORS LICENSE README.rst $PKG/usr/doc/$PRGNAM-$VERSION
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
