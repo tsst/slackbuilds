@@ -12,6 +12,7 @@ esac
 
 VERSION="3.10.5"
 BUILD=${BUILD:-1}
+TAG=${TAG:-_tsst}
 
 CWD=$(pwd)
 TMP=${TMP:-/tmp}
@@ -32,5 +33,5 @@ mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
 
 cd $PKG
-/sbin/makepkg -l y -c n $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD.txz
+/sbin/makepkg -l y -c n $OUTPUT/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.txz
 
