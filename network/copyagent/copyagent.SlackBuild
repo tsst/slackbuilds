@@ -3,7 +3,7 @@
 PRGNAM=copyagent
 PACKNAM=copy_agent
 
-VERSION=${VERSION:-1.41.0253}
+VERSION=${VERSION:-1.47.0439}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_tsst}
 

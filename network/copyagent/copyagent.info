@@ -1,8 +1,8 @@
 PRGNAM="copyagent"
-VERSION="1.41.0253"
+VERSION="1.47.0439"
 HOMEPAGE="http://www.copy.com"
 DOWNLOAD="https://copy.com/install/linux/Copy.tgz"
-MD5SUM="64a53c0b09f614b0f8fbcdf159b379e6"
+MD5SUM="b0bc1fe9d7f86ca7b99135711a285c68"
 DOWNLOAD_x86_64=
 MD5SUM_x86_64=
 REQUIRES=""
