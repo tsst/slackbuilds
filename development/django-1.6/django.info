@@ -1,5 +1,5 @@
 PRGNAM="django"
-VERSION="1.6.8"
+VERSION="1.6.11"
 HOMEPAGE="http://www.djangoproject.com/"
 DOWNLOAD="https://www.djangoproject.com/m/releases/1.6/Django-1.6.11.tar.gz"
 MD5SUM="3bf6086c3b923876d283dc3404e32fdd"
