@@ -23,7 +23,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=django
-VERSION=${VERSION:-1.6.8}
+VERSION=${VERSION:-1.6.11}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_tsst}
 
@@ -38,7 +38,7 @@ if [ -z "$ARCH" ]; then
 fi
 
 CWD=$(pwd)
-TMP=${TMP:-/tmp/SBo}
+TMP=${TMP:-/tmp/mybuild}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
