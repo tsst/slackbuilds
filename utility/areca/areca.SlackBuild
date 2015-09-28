@@ -11,12 +11,12 @@ fi
 OUTPUT=${OUTPUT:-/tmp/mbuild}
 
 # The version which appears in the application's filename
-VERSION=7.4.8
+VERSION=7.5
 
 # If the version conflicts with the Slackware package standard
 # The dash character ("-") is not allowed in the VERSION string
 # You can set the PKG_VERSION to something else than VERSION
-PKG_VERSION=7.4.8 # the version which appears in the package name. 
+PKG_VERSION=7.5 # the version which appears in the package name. 
 
 ARCH=${ARCH:-i486} # the architecture on which you want to build your package   
 
