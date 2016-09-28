@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Copy.com
-GenericName=Network Storage
-Comment=Secure backup, sync and sharing made easy
-Exec=/opt/copyagent/CopyAgent
-Icon=/usr/share/icons/copy-client.png
-Terminal=false
-Type=Application
-Categories=Network;
